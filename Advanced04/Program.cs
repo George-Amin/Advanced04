@@ -39,24 +39,58 @@ namespace Advanced04
             };
             // Every item in hashtable returns DictionaryEntry
 
-                //foreach (/*DictionaryEntry*/ /*var*/  object item in PhoneNote) // Change back to DictionaryEntry
-                //{
-                //// object can not access Key and Value properties
-                //Console.WriteLine(item);
-                ////Console.WriteLine($"{item.Key}{item.value}");
-                //}
+            //foreach (/*DictionaryEntry*/ /*var*/  object item in PhoneNote) // Change back to DictionaryEntry
+            //{
+            //// object can not access Key and Value properties
+            //Console.WriteLine(item);
+            ////Console.WriteLine($"{item.Key}{item.value}");
+            //}
             // there is no indexer in hashtable and not sorted but if run again the order may change
 
-            foreach (string item in PhoneNote.Keys)
-            {
-                Console.WriteLine(item);
-            }
-            Console.WriteLine("...............");
-            // use int? to allow null values because value can be null
-            foreach (int? item in PhoneNote.Values)
-            {
-                Console.WriteLine(item);
-            }
+            //foreach (string item in PhoneNote.Keys)
+            //{
+            //    Console.WriteLine(item);
+            //}
+            //Console.WriteLine("...............");
+            //// use int? to allow null values because value can be null
+            //foreach (int? item in PhoneNote.Values)
+            //{
+            //    Console.WriteLine(item);
+            //}
+            #region Indexer of hashtable
+            //Console.WriteLine(PhoneNote["George"]); // 555 return value by key
+            //PhoneNote["George"] = 1; // to add or update value
+            //var Result =  PhoneNote["George"];
+            //Console.WriteLine($"The phone number for George is: {Result}");
+
+            //foreach (DictionaryEntry item in PhoneNote)
+            //{
+            //    Console.WriteLine($"{item.Key} : {item.Value}");
+            //} 
+            #endregion
+
+            #region How To Use Add()
+            // use Add() method is not save because if the key exists it will throw exception
+            //PhoneNote.Add("George", 999); // throws exception because key exists
+            //Use ContiansKey() => returns bool if the key is exists or not will return false 
+            //bool isExisit = PhoneNote.ContainsKey("George"); // return true 
+            //if (!isExisit)
+            //{
+            //    PhoneNote.Add("George", 010);
+            //}
+
+
+            //bool isExisit = PhoneNote.ContainsKey("AA"); // return true 
+            //if (!isExisit)
+            //{
+            //    PhoneNote.Add("AA", 010);
+            //}
+            //Console.WriteLine(isExisit);
+            //foreach (object item in PhoneNote)
+            //{
+            //    Console.WriteLine(item);
+            //}
+            #endregion
             #endregion
 
             #endregion
@@ -65,3 +99,4 @@ namespace Advanced04
         }
     }
 }
+
