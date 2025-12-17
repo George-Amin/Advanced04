@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Advanced04.HashTable;
+using System.Collections;
 
 namespace Advanced04
 {
@@ -30,7 +31,8 @@ namespace Advanced04
 
             #region Sugar syntax
             //Hashtable PhoneNote = new Hashtable() { { "George", 555 }, { "Ali", 1234 }, { "Veli", 5678 }, { "Ayse", null } };
-            Hashtable PhoneNote = new()
+           ////..Hashtable have 16 constructor 
+            Hashtable PhoneNote = new Hashtable(new StringEqualityComparer())
             {
                 ["George"] = 555,
                 ["Ali"] = 1234,
@@ -90,6 +92,30 @@ namespace Advanced04
             //{
             //    Console.WriteLine(item);
             //}
+
+            #region Add() with Equals()
+
+            //PhoneNote.Add("George", 999); // throws exception because key exists
+            //PhoneNote.Add("george", 999); // will not throw exception because key not exists [case sensitive]
+            //////.george = George but different in case use Equals() method to compare keys
+            //////.Override Equals() method to make it case insensitive
+            //foreach (var item in PhoneNote)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+
+            #region After Use Custom StringEqualityComparer
+            ////.. use the overloading to take interface IEqualityComparer or any type inherit
+            PhoneNote.Add("george", 999);
+            foreach (var item in PhoneNote)
+            {
+                Console.WriteLine(item);
+            }
+
+
+            #endregion
+            #endregion
             #endregion
             #endregion
 
