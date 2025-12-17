@@ -31,7 +31,7 @@ namespace Advanced04
 
             #region Sugar syntax
             //Hashtable PhoneNote = new Hashtable() { { "George", 555 }, { "Ali", 1234 }, { "Veli", 5678 }, { "Ayse", null } };
-           ////..Hashtable have 16 constructor 
+            ////..Hashtable have 16 constructor 
             Hashtable PhoneNote = new Hashtable(new StringEqualityComparer())
             {
                 ["George"] = 555,
@@ -39,6 +39,7 @@ namespace Advanced04
                 ["Veli"] = 5678,
                 ["Ayse"] = null
             };
+            #endregion
             // Every item in hashtable returns DictionaryEntry
 
             //foreach (/*DictionaryEntry*/ /*var*/  object item in PhoneNote) // Change back to DictionaryEntry
@@ -107,21 +108,132 @@ namespace Advanced04
 
             #region After Use Custom StringEqualityComparer
             ////.. use the overloading to take interface IEqualityComparer or any type inherit
-            PhoneNote.Add("george", 999);
-            foreach (var item in PhoneNote)
-            {
-                Console.WriteLine(item);
-            }
+            //PhoneNote.Add("george", 999);
+            //foreach (var item in PhoneNote)
+            //{
+            //    Console.WriteLine(item);
+            //}
 
 
             #endregion
             #endregion
             #endregion
+
+            #endregion
+
+            #endregion
+
+
+            #region Dictionary<TKey , TValue>
+            /* 
+             Dictionary<string, int> PhoneNumbersDictionary = new Dictionary<string, int>()
+                {
+                    {
+                        "George",555
+                    },
+                    {
+                        "Ali",1234
+                    },
+                    {
+                        "Veli",5678
+                    },
+                    {
+                        "Ayse",2222
+                    }
+
+                };
+            */
+            //foreach (KeyValuePair<string, int> i in PhoneNumbersDictionary)
+            //    Console.WriteLine(i);
+
+
+            #region Indexer Dictionary 
+            //// set value 
+            //PhoneNumbersDictionary["George"] = 11;
+            //// get value
+            //Console.WriteLine(PhoneNumbersDictionary["George"]);
+
+            ////TryGetValue => return boolean if key exists return true and output value by out parameter otherwise return false 
+            //bool IsExists = PhoneNumbersDictionary.TryGetValue("george", out int value); //// value is default Data type if key not exists
+            //Console.WriteLine(IsExists);//// false
+            //Console.WriteLine(value); //// 0
+
+
+            #endregion
+
+
+            #region Adding New Element
+            ////PhoneNumbersDictionary.Add("John", 3333); // if key exists will throw exception not safe
+            ////TryAdd => return boolean if key added return true otherwise false   
+            //// need add new item
+            ////..if key exists will return false use ! to add new item
+            //if (!PhoneNumbersDictionary.ContainsKey("SS"))
+            //{
+            //    PhoneNumbersDictionary.Add("SS" , 789);
+            //}
+            //Console.WriteLine(PhoneNumbersDictionary["SS"]);
+            #region TryAdd()
+            //PhoneNumbersDictionary.TryAdd("John", 3333); // if key exists will return false not safe
+            //Console.WriteLine(PhoneNumbersDictionary["John"]);
+            #endregion
+            #endregion
+
+            #region Dictionary Constructor ....
+
+            #region use constructor that take the capacity...
+            // use constructor that take the capacity...
+            //Dictionary<string, int> PhoneNumbersDictionary = new Dictionary<string, int>(4);
+
+            //Console.WriteLine(PhoneNumbersDictionary.Capacity);  
+            #endregion
+
+            #region  constructor that take the IEnumerable<KeyValuePair<TKey,TValue>>....
+            // use constructor that take the IEnumerable<KeyValuePair<TKey,TValue>>....
+            //Dictionary<string, int> PhoneNumbersDictionary = new Dictionary<string, int>();
+            //KeyValuePair<string, int>[] arrPdoneNums = new KeyValuePair<string, int>[]
+            //{
+            //    new KeyValuePair<string, int>("George",555645),
+            //    new KeyValuePair<string, int>("Ali",1234),
+            //    new KeyValuePair<string, int>("Veli",5678),
+            //    new KeyValuePair<string, int>("Ayse",2222)
+            //};
+
+            //PhoneNumbersDictionary = new Dictionary<string, int>(arrPdoneNums);
+
+            //foreach (var item in PhoneNumbersDictionary)
+            //{
+            //    Console.WriteLine($"{item.Key}: {item.Value}");
+            //}
+            #endregion
+
+            #region Dictionary Constructor that take IEqualityComparer.... 
+
+            ////..take IEqualityComparer to compare keys..
+
+            //KeyValuePair<string, int>[] ArrOfPhoneNote = 
+            
+            //{
+            //    new KeyValuePair<string, int>("George",555645),
+            //    new KeyValuePair<string, int>("Ali",1234),
+            //    new KeyValuePair<string, int>("Veli",5678),
+            //    new KeyValuePair<string, int>("Ayse",2222),
+            //    //new KeyValuePair<string, int>("Ayse",2222) //// exception key duplicate
+            //};
+
+            //Dictionary<string, int> PhoneNumbersDictionary = new Dictionary<string, int>(ArrOfPhoneNote,new DictionaryHelper.StringEqualityComparer());
+
+            //foreach (var item in PhoneNumbersDictionary)
+            //{
+            //    Console.WriteLine($"{item.Key}: {item.Value}");
+            //}
+    
             #endregion
 
             #endregion
 
             #endregion
+
+
         }
     }
 }
