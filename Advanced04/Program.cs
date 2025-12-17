@@ -1,5 +1,6 @@
 ﻿using Advanced04.HashTable;
 using System.Collections;
+using System.Xml.Linq;
 
 namespace Advanced04
 {
@@ -211,7 +212,7 @@ namespace Advanced04
             ////..take IEqualityComparer to compare keys..
 
             //KeyValuePair<string, int>[] ArrOfPhoneNote = 
-            
+
             //{
             //    new KeyValuePair<string, int>("George",555645),
             //    new KeyValuePair<string, int>("Ali",1234),
@@ -226,13 +227,39 @@ namespace Advanced04
             //{
             //    Console.WriteLine($"{item.Key}: {item.Value}");
             //}
-    
-            #endregion
 
             #endregion
 
             #endregion
 
+            #endregion
+
+
+            #region User Define Data Type  Dictionary Employee
+            Employee emp1 = new Employee(1, "George", 13213);
+            Employee emp2 = new Employee(10, "AA", 13213);
+            Employee emp3 = new Employee(20, "BB", 13213);
+            Dictionary<Employee, string> Emps = new Dictionary<Employee, string>()
+            {
+                [emp1] = "one",
+                [emp2] = "Two",
+                [emp3] = "Three"
+            };
+            //foreach(KeyValuePair<Employee , string> i in Emps)
+            //{
+            //    Console.WriteLine($"key:{i.Key} - Value: {i.Value}");
+            //}
+
+            Employee emp04 = new Employee(20, "BB", 13213);
+            Emps.Add(emp04, "Four");
+            ////valid because the key already exists in the dictionary     
+            foreach(KeyValuePair<Employee , string> i in Emps)
+            {
+                Console.WriteLine($"key:{i.Key} - Value: {i.Value}");
+            }
+
+
+            #endregion
 
         }
     }
