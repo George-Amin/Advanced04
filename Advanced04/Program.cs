@@ -322,9 +322,9 @@ namespace Advanced04
                         }
             */
 
-                        Employee emp1 = new Employee(100, "George", 13213);
-                        Employee emp2 = new Employee(10, "AA", 13213);
-                        Employee emp3 = new Employee(20, "BB", 13213);
+            Employee emp1 = new Employee(100, "George", 13213);
+            Employee emp2 = new Employee(10, "AA", 13213);
+            Employee emp3 = new Employee(20, "BB", 13213);
             /*
 
                         SortedDictionary<Employee, int> SortedDictianory = new SortedDictionary<Employee, int>()
@@ -347,16 +347,16 @@ namespace Advanced04
 
 
 
-            SortedDictionary<Employee, int> SortedDictionary = new SortedDictionary<Employee, int>(new EmployeeNameComparer())
-            {
-                [emp1] = 1,
-                [emp2] = 2,
-                [emp3] = 3
-            };
-            foreach (KeyValuePair<Employee, int> item in SortedDictionary)
-            {
-                Console.WriteLine($"Key: {item.Key}:Value : {item.Value}");
-            }
+            //SortedDictionary<Employee, int> SortedDictionary = new SortedDictionary<Employee, int>(new EmployeeNameComparer())
+            //{
+            //    [emp1] = 1,
+            //    [emp2] = 2,
+            //    [emp3] = 3
+            //};
+            //foreach (KeyValuePair<Employee, int> item in SortedDictionary)
+            //{
+            //    Console.WriteLine($"Key: {item.Key}:Value : {item.Value}");
+            //}
 
             #endregion
 
@@ -364,6 +364,67 @@ namespace Advanced04
 
 
             #endregion
+
+
+
+            #region SortedList<TKey, TValue>()
+
+            //SortedList<string, int> PhoneNote = new SortedList<string, int>()
+            //{
+            //    {"Alice", 90},
+            //    {"Bob", 85},
+            //    {"George" ,55},
+            //    {"Charlie", 92}
+            //};
+
+            //PhoneNote.GetKeyAtIndex(2); // "George"
+            //PhoneNote.GetValueAtIndex(2); // 55
+
+
+            /*  foreach (KeyValuePair<string, int> item in PhoneNote)
+              {
+                  Console.WriteLine($"Key: {item.Key}:Value : {item.Value}");
+              }*/
+
+
+
+            /*          for (int i = 0; i < PhoneNote.Count; i++)
+                        {
+                            Console.WriteLine(PhoneNote[i]);// invalid because there is no indexer with int
+                        }*/
+
+            #endregion
+
+
+
+            #region Generic HashSet<T>
+            //// it is a collection that store unique elements only no duplicate allowed and no indexer unordered
+            //// and provide high performance for searching elements Lookups
+            //HashSet<int> Elements = new HashSet<int>()
+            //{
+            //    1,1,1,2,2,2,3,3,3,4,4,4
+            //};
+            /*
+                    1
+                    2
+                    3
+                    4
+            Remove Duplicates
+             */
+            HashSet<string> Elements = new HashSet<string>();
+            //{
+            //    "George","George" ,"Amin","Amin"
+            //};
+            Elements.Add("George");
+            Elements.Add("Amin");
+            Elements.Add("Shokry");
+            Elements.Add("Aziz");
+            Elements.Add("Amin");// not stored
+            Elements.Add("amin");// not stored
+            foreach (var item in Elements) Console.Write(item + " "); // George Amin
+
+            #endregion
+
 
 
         }
