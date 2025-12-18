@@ -1,4 +1,5 @@
-﻿using Advanced04.HashTable;
+﻿using Advanced04.DictionaryHelper;
+using Advanced04.HashTable;
 using System.Collections;
 using System.Xml.Linq;
 
@@ -33,13 +34,13 @@ namespace Advanced04
             #region Sugar syntax
             //Hashtable PhoneNote = new Hashtable() { { "George", 555 }, { "Ali", 1234 }, { "Veli", 5678 }, { "Ayse", null } };
             ////..Hashtable have 16 constructor 
-            Hashtable PhoneNote = new Hashtable(new StringEqualityComparer())
-            {
-                ["George"] = 555,
-                ["Ali"] = 1234,
-                ["Veli"] = 5678,
-                ["Ayse"] = null
-            };
+            //Hashtable PhoneNote = new Hashtable(new DictionaryHelper.StringEqualityComparer())
+            //{
+            //    ["George"] = 555,
+            //    ["Ali"] = 1234,
+            //    ["Veli"] = 5678,
+            //    ["Ayse"] = null
+            //};
             #endregion
             // Every item in hashtable returns DictionaryEntry
 
@@ -239,26 +240,42 @@ namespace Advanced04
             Employee emp1 = new Employee(1, "George", 13213);
             Employee emp2 = new Employee(10, "AA", 13213);
             Employee emp3 = new Employee(20, "BB", 13213);
-            Dictionary<Employee, string> Emps = new Dictionary<Employee, string>()
-            {
-                [emp1] = "one",
-                [emp2] = "Two",
-                [emp3] = "Three"
-            };
+            //Dictionary<Employee, string> Emps = new Dictionary<Employee, string>()
+            //{
+            //    [emp1] = "one",
+            //    [emp2] = "Two",
+            //    [emp3] = "Three"
+            //};
             //foreach(KeyValuePair<Employee , string> i in Emps)
             //{
             //    Console.WriteLine($"key:{i.Key} - Value: {i.Value}");
             //}
 
-            Employee emp04 = new Employee(20, "BB", 13213);
-            Emps.Add(emp04, "Four");
-            ////valid because the key already exists in the dictionary     
-            foreach(KeyValuePair<Employee , string> i in Emps)
+            ////Employee emp04 = new Employee(20, "BB", 13213);
+            ////Emps.Add(emp04, "Four");
+            ////valid because the Employee's hashcode is different    
+            //foreach (KeyValuePair<Employee, string> i in Emps)
+            //{
+            //    Console.WriteLine($"key:{i.Key} - Value: {i.Value}");
+            //}
+
+            #region IEqualityComparer Constructor on dictionary
+            Employee emp4 = new Employee(20, "CC", 13213); // same Id as emp3 but different Name still valid unless override GetHashCode and Equals Use anther Overloud on Dictionary Constructor
+            Dictionary<Employee, string> Emps = new Dictionary<Employee, string>(new EmployeeIdIqualityComaparer())
+            {
+                [emp1] = "one",
+                [emp2] = "Two",
+                [emp3] = "Three"
+            };
+
+            Emps.Add(emp4, "Four");
+
+            foreach (KeyValuePair<Employee, string> i in Emps)
             {
                 Console.WriteLine($"key:{i.Key} - Value: {i.Value}");
             }
 
-
+            #endregion
             #endregion
 
         }
