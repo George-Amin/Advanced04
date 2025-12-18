@@ -1,4 +1,5 @@
 ﻿using Advanced04.DictionaryHelper;
+using Advanced04.EmployeeHelper;
 using Advanced04.HashTable;
 using System.Collections;
 using System.Xml.Linq;
@@ -237,9 +238,9 @@ namespace Advanced04
 
 
             #region User Define Data Type  Dictionary Employee
-            Employee emp1 = new Employee(1, "George", 13213);
-            Employee emp2 = new Employee(10, "AA", 13213);
-            Employee emp3 = new Employee(20, "BB", 13213);
+            //Employee emp1 = new Employee(1, "George", 13213);
+            //Employee emp2 = new Employee(10, "AA", 13213);
+            //Employee emp3 = new Employee(20, "BB", 13213);
             //Dictionary<Employee, string> Emps = new Dictionary<Employee, string>()
             //{
             //    [emp1] = "one",
@@ -260,23 +261,110 @@ namespace Advanced04
             //}
 
             #region IEqualityComparer Constructor on dictionary
-            Employee emp4 = new Employee(20, "CC", 13213); // same Id as emp3 but different Name still valid unless override GetHashCode and Equals Use anther Overloud on Dictionary Constructor
-            Dictionary<Employee, string> Emps = new Dictionary<Employee, string>(new EmployeeIdIqualityComaparer())
+            //Employee emp4 = new Employee(20, "CC", 13213); // same Id as emp3 but different Name still valid unless override GetHashCode and Equals Use anther Overloud on Dictionary Constructor
+            //Dictionary<Employee, string> Emps = new Dictionary<Employee, string>(new EmployeeIdIqualityComaparer())
+            //{
+            //    [emp1] = "one",
+            //    [emp2] = "Two",
+            //    [emp3] = "Three"
+            //};
+
+            //Emps.Add(emp4, "Four");
+
+            //foreach (KeyValuePair<Employee, string> i in Emps)
+            //{
+            //    Console.WriteLine($"key:{i.Key} - Value: {i.Value}");
+            //}
+
+            #endregion
+            #endregion
+
+
+
+            #region Generic SortedDictionary<TKey,TValue>()
+            //// it is a collections that stored the elements Key-Value pairs in sorted order based on Key [default ascending order]
+            #region Default Constructor
+            /* 
+             SortedDictionary<string, int> PhoneNote = new SortedDictionary<string, int>()
+                  {
+                      ["George"] = 555,
+                      ["Ali"] = 1234,
+                      ["Veli"] = 5678,
+                      ["Ayse"] = 2222
+                  };
+
+                  foreach (KeyValuePair<string, int> item in PhoneNote)
+                  {
+                      Console.WriteLine($"Key: {item.Key}:Value : {item.Value}");
+                  }
+            */
+            /*
+             Key: Ali:Value : 1234
+            Key: Ayse:Value : 2222
+            Key: George:Value : 555
+            Key: Veli:Value : 5678
+             */
+            #endregion
+
+            #region IComparer Constructor()
+            /*
+                        SortedDictionary<string, int> PhoneNote = new SortedDictionary<string, int>(new SortedDictionaryHelper.SortingDescComparer())  
+                        {
+                            ["George"] = 555,
+                            ["Ali"] = 1234,
+                            ["Veli"] = 5678,
+                            ["Ayse"] = 2222
+                        };
+
+                        foreach (KeyValuePair<string, int> item in PhoneNote)
+                        {
+                            Console.WriteLine($"Key: {item.Key}:Value : {item.Value}");
+                        }
+            */
+
+                        Employee emp1 = new Employee(100, "George", 13213);
+                        Employee emp2 = new Employee(10, "AA", 13213);
+                        Employee emp3 = new Employee(20, "BB", 13213);
+            /*
+
+                        SortedDictionary<Employee, int> SortedDictianory = new SortedDictionary<Employee, int>()
+                        {
+                            [emp1] = 1,
+                            [emp2] = 2,
+                            [emp3] = 3
+                        };
+                        foreach (KeyValuePair<Employee, int> item in SortedDictianory)
+                        {
+                            Console.WriteLine($"Key: {item.Key}:Value : {item.Value}");
+                        }
+            */
+            /*Unhandled exception. System.ArgumentException: At least one object must implement IComparable.*/
+            //// in valid because Employee not implement IComparable interface
+            //// because how can sort Employee without knowing the property to sort by WHAT?
+
+
+            //// custom IComparer Constructor on Names  EmployeeNameComparer()
+
+
+
+            SortedDictionary<Employee, int> SortedDictionary = new SortedDictionary<Employee, int>(new EmployeeNameComparer())
             {
-                [emp1] = "one",
-                [emp2] = "Two",
-                [emp3] = "Three"
+                [emp1] = 1,
+                [emp2] = 2,
+                [emp3] = 3
             };
-
-            Emps.Add(emp4, "Four");
-
-            foreach (KeyValuePair<Employee, string> i in Emps)
+            foreach (KeyValuePair<Employee, int> item in SortedDictionary)
             {
-                Console.WriteLine($"key:{i.Key} - Value: {i.Value}");
+                Console.WriteLine($"Key: {item.Key}:Value : {item.Value}");
             }
 
             #endregion
+
+
+
+
             #endregion
+
 
         }
     }
